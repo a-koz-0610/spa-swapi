@@ -1,7 +1,8 @@
+import apiActions from './api-actions/api-actions.js';
 import Footer from './components/Footer.js';
 import Header from './components/Header.js';
 import HomePage from './pages/HomePage.js';
-import apiActions from './api-actions/api-actions.js';
+import PeoplePage from './pages/PeoplePage.js';
 
 buildPage();
 
@@ -33,8 +34,9 @@ function navigateToHomePage() {
 function renderPeopleInfoList() {
   const peopleButton = document.querySelector('.nav__list_people');
   peopleButton.addEventListener('click', () => {
+    const app = document.querySelector('#app');
     apiActions.getRequest('https://swapi.dev/api/people', (people) => {
-      console.log(people);
+      app.innerHTML = PeoplePage(people);
     });
   });
 }
