@@ -3,6 +3,7 @@ import Footer from './components/Footer.js';
 import Header from './components/Header.js';
 import HomePage from './pages/HomePage.js';
 import PeoplePage from './pages/PeoplePage.js';
+import PersonPage from './pages/PersonPage.js';
 
 buildPage();
 
@@ -11,6 +12,7 @@ function buildPage() {
   footer();
   navigateToHomePage();
   renderPeopleInfoList();
+  renderPersonInfo();
 }
 
 function header() {
@@ -38,5 +40,20 @@ function renderPeopleInfoList() {
     apiActions.getRequest('https://swapi.dev/api/people', (people) => {
       app.innerHTML = PeoplePage(people);
     });
+  });
+}
+
+//we need to use Event Delegation because we can ONLY attempt to query select the elem IF its being rendered
+function renderPersonInfo() {
+  const app = document.querySelector('#app'); //need to grab a Parent elem
+  app.addEventListener('click', (event) => {
+    //event delegation
+    if (event.target.classList.contains('person__name')) {
+      const personUrl =
+        event.target.parentElement.querySelector('#personId').value;
+      apiActions.getRequest(personUrl, (person) => {
+        app.innerHTML = PersonPage(person);
+      });
+    }
   });
 }
