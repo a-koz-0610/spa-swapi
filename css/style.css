@@ -1,0 +1,43 @@
+.h1 {
+  background-color: blue;
+}
+
+.actionButton {
+  background-color: cadetblue;
+  border-radius: 6px;
+  color: #fff;
+  margin: 5px;
+  padding: 5px;
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__list li {
+  background-color: darkcyan;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 20px;
+  list-style-type: none;
+}
+
+.people__container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.person__name {
+  cursor: pointer;
+}
+
+.person__tile_container {
+  background-color: #ddd;
+  border-radius: 8px;
+  height: 420px;
+  padding: 5px;
+  text-align: center;
+}
