@@ -1,6 +1,12 @@
-const container = document.querySelector('.container');
+import Header from './components/Header.js';
 
-const h1 = document.createElement('h1');
-h1.innerText = 'Hello World';
-h1.classList.add('h1');
-container.appendChild(h1);
+buildPage();
+
+function buildPage() {
+  header();
+}
+
+function header() {
+  const headerElement = document.querySelector('.header');
+  headerElement.innerHTML = Header();
+}
