@@ -1,4 +1,5 @@
 import apiActions from './api-actions/api-actions.js';
+import FilmsPage from './pages/FilmsPage.js';
 import Footer from './components/Footer.js';
 import Header from './components/Header.js';
 import HomePage from './pages/HomePage.js';
@@ -13,6 +14,7 @@ function buildPage() {
   navigateToHomePage();
   renderPeopleInfoList();
   renderPersonInfo();
+  renderFilms();
 }
 
 function header() {
@@ -55,5 +57,14 @@ function renderPersonInfo() {
         app.innerHTML = PersonPage(person);
       });
     }
+  });
+}
+function renderFilms() {
+  const filmsButton = document.querySelector('.nav__list_films');
+  filmsButton.addEventListener('click', () => {
+    const app = document.querySelector('#app');
+    apiActions.getRequest('https://swapi.dev/api/films/', (films) => {
+      app.innerHTML = FilmsPage(films);
+    });
   });
 }
