@@ -2,6 +2,7 @@ import apiActions from './api-actions/api-actions.js';
 import FilmsPage from './pages/FilmsPage.js';
 import Footer from './components/Footer.js';
 import Header from './components/Header.js';
+import ImagesPage from './pages/ImagesPage.js';
 import HomePage from './pages/HomePage.js';
 import PeoplePage from './pages/PeoplePage.js';
 import PersonPage from './pages/PersonPage.js';
@@ -15,6 +16,7 @@ function buildPage() {
   renderPeopleInfoList();
   renderPersonInfo();
   renderFilms();
+  renderNasaImages();
 }
 
 function header() {
@@ -66,5 +68,18 @@ function renderFilms() {
     apiActions.getRequest('https://swapi.dev/api/films/', (films) => {
       app.innerHTML = FilmsPage(films);
     });
+  });
+}
+
+function renderNasaImages() {
+  const nasaImagesButton = document.querySelector('.nav__list_images');
+  nasaImagesButton.addEventListener('click', () => {
+    const app = document.querySelector('#app');
+    apiActions.getRequest(
+      'https://images-api.nasa.gov/search?q=location',
+      (images) => {
+        app.innerHTML = ImagesPage(images);
+      }
+    );
   });
 }
