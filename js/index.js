@@ -6,6 +6,8 @@ import ImagesPage from './pages/ImagesPage.js';
 import HomePage from './pages/HomePage.js';
 import PeoplePage from './pages/PeoplePage.js';
 import PersonPage from './pages/PersonPage.js';
+import SmithsonianPage from './pages/SmithsonianPage.js';
+import '../css/homePage.css';
 
 buildPage();
 
@@ -17,6 +19,9 @@ function buildPage() {
   renderPersonInfo();
   renderFilms();
   renderNasaImages();
+  renderSmithsonianData();
+  displayLandingPage();
+  activateButton();
 }
 
 function header() {
@@ -27,6 +32,11 @@ function header() {
 function footer() {
   const footerElement = document.querySelector('.footer');
   footerElement.innerHTML = Footer();
+}
+
+function displayLandingPage() {
+  const app = document.querySelector('#app');
+  app.innerHTML = HomePage();
 }
 
 function navigateToHomePage() {
@@ -61,6 +71,7 @@ function renderPersonInfo() {
     }
   });
 }
+
 function renderFilms() {
   const filmsButton = document.querySelector('.nav__list_films');
   filmsButton.addEventListener('click', () => {
@@ -81,5 +92,30 @@ function renderNasaImages() {
         app.innerHTML = ImagesPage(images);
       }
     );
+  });
+}
+
+function renderSmithsonianData() {
+  const smithsonianButton = document.querySelector('.nav__list_smithsonian');
+  smithsonianButton.addEventListener('click', () => {
+    const app = document.querySelector('#app');
+    apiActions.getRequest(
+      'https://api.si.edu/openaccess/api/v1.0/content/edanmdm-nmaahc_2012.36.4ab?api_key=XTho1qNbbH712lzHCbhJ9lArgnclHEw7otZfuXx7',
+      (info) => {
+        app.innerHTML = SmithsonianPage(info);
+      }
+    );
+  });
+}
+
+function activateButton() {
+  const app = document.querySelector('#app'); //need to grab a Parent elem
+  app.addEventListener('click', (event) => {
+    //event delegation
+    if (event.target.classList.contains('button')) {
+      const paraElem = document.createElement('p');
+      paraElem.innerText = 'hello world!';
+      app.appendChild(paraElem);
+    }
   });
 }

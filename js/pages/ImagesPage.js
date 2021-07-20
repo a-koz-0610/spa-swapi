@@ -1,9 +1,10 @@
 export default function Images(images) {
-  console.log(images);
+  //console.log(images);
   const items = images.collection.items;
-  console.log(items);
+  // console.log(items);
 
   return `
+  <div class='home__container'>
     <h1>This is pulled from the NASA API</h1>
     <p>What is being pulled in is a collection of items and as you dive into the api... each item has a collection of links with attached images...I am pulling in all the images associated with the first link in each item at links[0] position.</p>
     ${items
@@ -15,5 +16,6 @@ export default function Images(images) {
           `;
       })
       .join('')}
+      </div>
     `;
 }

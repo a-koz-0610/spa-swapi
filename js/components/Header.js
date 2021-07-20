@@ -5,6 +5,7 @@ export default function Header() {
         <li class='nav__list_people'>People</li>
         <li class='nav__list_films'>Films</li>
         <li class='nav__list_images'>NASA Images</li>
+        <li class='nav__list_smithsonian'>Smithsonian Info</li>
     </ul>
     `;
 }
