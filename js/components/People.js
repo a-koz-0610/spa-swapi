@@ -6,7 +6,7 @@ export default function People(people) {
   ${people.results
     .map((person) => {
       return `
-      ${PersonTile(person)}
+      ${PersonTile(pesron)}
       `;
     })
     .join('')}

@@ -14,7 +14,6 @@ buildPage();
 function buildPage() {
   header();
   footer();
-  navigateToHomePage();
   renderPeopleInfoList();
   renderPersonInfo();
   renderFilms();
@@ -73,7 +72,7 @@ function renderPersonInfo() {
 }
 
 function renderFilms() {
-  const filmsButton = document.querySelector('.nav__list_films');
+  const filmsButton = document.querySelector('nav__list_films');
   filmsButton.addEventListener('click', () => {
     const app = document.querySelector('#app');
     apiActions.getRequest('https://swapi.dev/api/films/', (films) => {
@@ -87,7 +86,7 @@ function renderNasaImages() {
   nasaImagesButton.addEventListener('click', () => {
     const app = document.querySelector('#app');
     apiActions.getRequest(
-      'https://images-api.nasa.gov/search?q=location',
+      'https://images-api.nasa.gov/search&q=location',
       (images) => {
         app.innerHTML = ImagesPage(images);
       }
